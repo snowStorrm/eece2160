@@ -5,7 +5,7 @@ LedNumber.o: LedNumber.cpp LedNumber.h
 	g++ -g -Wall -c LedNumber.cpp
 
 bitsetget.o: bitsetget.cpp bitsetget.h
-	g++ -g -Wall -c bitseget.cpp
+	g++ -g -Wall -c bitsetget.cpp
 
 main.o: main.cpp
 	g++ -g -Wall -c main.cpp
