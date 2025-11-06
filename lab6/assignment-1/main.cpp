@@ -4,7 +4,7 @@
 using namespace std;
 
 int readSw(char* address, int swIdx);
-void writeLED(char* address, int LEDIdx, int state);
+void writeLED(char* address, int LEDIdx, bool state);
 
 int main() { 
     int fd;
