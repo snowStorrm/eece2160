@@ -12,6 +12,7 @@ const unsigned int LEDR_BASE 		= 0x00000000;  // Leds offset
 const unsigned int SW_BASE 			= 0x00000040;  // Switches offset
 const unsigned int KEY_BASE 		= 0x00000050;  // Push buttons offset
 
+// Function declarations
 char* Initialize(int* fd);
 void Finalize(char* pBase, int fd);
 void RegisterWrite(char *pBase, unsigned int reg_offset, int value);
