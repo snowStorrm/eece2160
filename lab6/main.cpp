@@ -6,25 +6,22 @@ using namespace std;
 int readSw(char* address, int swIdx);
 void writeLED(char* address, int LEDIdx, int state);
 
-/*
-* Main Function
-*/
 int main() { 
-// Initialize 
-int fd; 
-char *pBase = Initialize(&fd); 
-    
-// Sample test program
-int value = 0; 
-cout << "Enter an int value between 0 to 1023: " << endl; 
-cin >> value; 
-cout << "value to be written to LEDs = " << value << endl; 
-WriteAllLeds(pBase, value);
-int readLEDs = RegisterRead(pBase, LEDR_BASE);
-cout << "value of LEDS read = " << readLEDs << endl;
+    int fd;
+    char* pBase = Initialize(&fd);
 
-// Done 
-Finalize(pBase, fd); 
+    int val;
+    cout << "Please enter the switch to read (0 - 9): ";
+    cin >> val;
+    cout << "Switch " << val << " is " << (readSw(pBase, val) ? " ON." : " OFF.") << endl;
+    
+    bool state;
+    cout << "Please enter the LED to set (0 - 9): ";
+    cin >> val;
+    cout << "Please enter the state of this LED (0: off, 1: on): ";
+    cin >> state;
+    writeLED(pBase, val, state);
+    cout << "Set LED " << val << " to " << (state ? " ON." : " OFF.") << endl;
 }
 
 int readSw(char* address, int swIdx) {

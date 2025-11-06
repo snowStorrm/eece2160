@@ -1,11 +1,14 @@
-main: includes.o main.o
+main: LedNumber.o bitseget.o main.o
 	g++ includes.o main.o -o main.exe
 
-includes.o: LedNumber.cpp LedNumber.h
+LedNumber.o: LedNumber.cpp LedNumber.h
 	g++ -g -Wall -c LedNumber.cpp
+
+bitsetget.o: bitsetget.cpp bitsetget.h
+	g++ -g -Wall -c bitseget.cpp
 
 main.o: main.cpp
 	g++ -g -Wall -c main.cpp
 
 clean:
-	rm main.exe includes.o main.o
+	rm main.exe LedNumber.o bitsetget.o main.o
