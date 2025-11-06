@@ -1,4 +1,4 @@
-#include "DE1SOC.h"
+#include "DE1SoC.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -11,18 +11,18 @@ using namespace std;
  *  - Opens access to physical memory /dev/mem 
  *  - Maps memory into virtual address space 
  */ 
-void DE1SOC::DE1SOC() {
+DE1SOC::DE1SOC() {
 	// Open /dev/mem to give access to physical addresses
-	this->*fd = open( "/dev/mem", (O_RDWR | O_SYNC));
-	if (this->*fd == -1) {// check for errors in openning /dev/mem
+	this->fd = open( "/dev/mem", (O_RDWR | O_SYNC));
+	if (this->fd == -1) {// check for errors in openning /dev/mem
         cout << "ERROR: could not open /dev/mem..." << endl;
         exit(1);
     }
     // Get a mapping from physical addresses to virtual addresses
-    char* virtual_base = (char*)mmap (NULL, LW_BRIDGE_SPAN, (PROT_READ | PROT_WRITE), MAP_SHARED, this->*fd, LW_BRIDGE_BASE);
+    char* virtual_base = (char*)mmap (NULL, LW_BRIDGE_SPAN, (PROT_READ | PROT_WRITE), MAP_SHARED, this->fd, LW_BRIDGE_BASE);
     if (virtual_base == MAP_FAILED)	{	// check for errors
         cout << "ERROR: mmap() failed..." << endl;
-        close (this->*fd); // close memory before exiting
+        close (this->fd); // close memory before exiting
         exit(1); // Returns 1 to the operating system;
     }
     this->pBase=virtual_base;
@@ -30,7 +30,7 @@ void DE1SOC::DE1SOC() {
 
 /** Close general-purpose I/O. 
  */ 
-void DE1SOC::~DE1SOC() {
+DE1SOC::~DE1SOC() {
 	if (munmap (this->pBase, LW_BRIDGE_SPAN) != 0) {
         cout << "ERROR: munmap() failed..." << endl;
         exit(1);

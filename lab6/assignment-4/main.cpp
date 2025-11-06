@@ -1,6 +1,5 @@
 #include "DE1SoC.h"
 #include <iostream>
-#include <chrono>
 using namespace std;
 
 int main() { 

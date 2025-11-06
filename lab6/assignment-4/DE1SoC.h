@@ -23,8 +23,8 @@ class DE1SOC {
         DE1SOC();
         ~DE1SOC();
         // memory read/write
-        void registerWrite(int offset, int val);
-        int registerRead(int offset);
+        void registerWrite(unsigned int offset, int val);
+        int registerRead(unsigned int offset);
 };
 
 // Function declarations
