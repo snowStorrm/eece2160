@@ -1,5 +1,5 @@
 main: DE1SoC.o main.o
-	g++ de1soc.o main.o -o main.exe
+	g++ DE1SoC.o main.o -o main.exe
 
 DE1SoC.o: DE1SoC.cpp DE1SoC.h
 	g++ -g -Wall -c DE1SoC.cpp
