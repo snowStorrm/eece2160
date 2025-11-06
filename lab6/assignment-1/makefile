@@ -1,4 +1,4 @@
-main: LedNumber.o bitseget.o main.o
+main: LedNumber.o bitsetget.o main.o
 	g++ includes.o main.o -o main.exe
 
 LedNumber.o: LedNumber.cpp LedNumber.h
