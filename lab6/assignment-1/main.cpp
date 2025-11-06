@@ -4,7 +4,7 @@
 using namespace std;
 
 // Function declarations (see implementations below)
-int readSw(char* address, int swIdx);
+bool readSw(char* address, int swIdx);
 void writeLED(char* address, int LEDIdx, bool state);
 
 int main() { 
@@ -29,14 +29,27 @@ int main() {
     writeLED(pBase, val, state);
     // Ternary operator statement to convert true/false to on/off
     cout << "Set LED " << val << " to " << (state ? " ON." : " OFF.") << endl;
+    Finalize(pBase, fd);
 }
 
-int readSw(char* address, int swIdx) {
+
+/** Reads the state of a single specified switch
+ *  @param address      Base address for GPIO
+ *  @param swIdx        Which switch to read (0 - 9)
+ *  @return             Boolean value representing switch state
+ */
+bool readSw(char* address, int swIdx) {
     // Read the entire 4-byte register value
     int registerVal = RegisterRead(address, SW_BASE);
     // Read one specific bit of that value
     return readBitVal(registerVal, swIdx);
 }
+
+/** Writes the state of a single specified LED
+ *  @param address      Base address for GPIO
+ *  @param LEDIdx       Which LED to set (0 - 9)
+ *  @param state        Boolean value representing LED state
+ */
 void writeLED(char* address, int LEDIdx, bool state) {
     // Read the entire 4-byte register value, set a specific bit in that value, then write to the same register
     RegisterWrite(address, LEDR_BASE, setBitVal(RegisterRead(address, LEDR_BASE), LEDIdx, state));
