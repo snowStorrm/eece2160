@@ -21,10 +21,15 @@ int main() {
         currButton = getButtonPressed(board);
         // if the input has changed, do an operation based on the state change
         if (currButton != prevButton) switch (currButton) {
+            // add 1 to LED value
             case 0: writeAllLEDs(board, currLEDVal+1); break;
+            // sub 1 from LED value
             case 1: writeAllLEDs(board, currLEDVal-1); break;
+            // bit shift right (divide by 2)
             case 2: writeAllLEDs(board, currLEDVal>>1); break;
+            // bit shift left (mult by 2)
             case 3: writeAllLEDs(board, currLEDVal<<1); break;
+            // set to current physical switch configuration
             case 4: writeAllLEDs(board, readAllSwitches(board)); break;
         }
         // set the previous input to the current one
