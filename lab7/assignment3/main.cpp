@@ -19,19 +19,18 @@ int main() {
     // loop infinitely until the user Ctrl+C quits
     while (true) {
         // get LED register value
-        int currLEDVal = LED->registerRead(LEDR_BASE);
         // determine button(s) pressed
         currButton = LED->getButtonPressed();
         // if the input has changed, do an operation based on the state change
         if (currButton != prevButton) switch (currButton) {
             // add 1 to LED value
-            case 0: LED->writeAllLEDs(currLEDVal+1); break;
+            case 0: LED->writeAllLEDs(LED->reg+1); break;
             // sub 1 from LED value
-            case 1: LED->writeAllLEDs(currLEDVal-1); break;
+            case 1: LED->writeAllLEDs(LED->reg-1); break;
             // bit shift right (divide by 2)
-            case 2: LED->writeAllLEDs(currLEDVal>>1); break;
+            case 2: LED->writeAllLEDs(LED->reg>>1); break;
             // bit shift left (mult by 2)
-            case 3: LED->writeAllLEDs(currLEDVal<<1); break;
+            case 3: LED->writeAllLEDs(LED->reg<<1); break;
             // set to current physical switch configuration
             case 4: LED->writeAllLEDs(LED->readAllSwitches()); break;
         }

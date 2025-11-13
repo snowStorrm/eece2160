@@ -27,12 +27,12 @@ void DE1_HEX::clear(int index) {
         // largely similar to DE1SOC::setBitVal()
         // create a mask to cover the target area
         // subtract that area's value from the entire register, setting all nonzero bits to zero
-        this->reg0=this->reg0 - (this->reg0 & (127 << (index * 7)));
+        this->reg0=this->reg0 - (this->reg0 & (255 << (index * 8)));
         this->registerWrite(HEX3_HEX0_BASE, this->reg0);
     // 4-5: we want to write to reg1
     } else if (index>=4 && index<=5) {
         // see above comments
-        this->reg1=this->reg1 - (this->reg1 & (127 << ((index-4) * 7)));
+        this->reg1=this->reg1 - (this->reg1 & (255 << ((index-4) * 8)));
         this->registerWrite(HEX5_HEX4_BASE, this->reg1);
     // error if not in range
     } else { cout << "Error: invalid HEX index. Valid ranges are 0-5.\n"; };
@@ -79,12 +79,12 @@ void DE1_HEX::set(int index, char value) {
         // create a mask to cover the target area
         // subtract that area's value from the entire register, setting all nonzero bits to zero
         // finally, we add the new value bitshifted to the correct register position
-        this->reg0=this->reg0 - (this->reg0 & (127 << (index * 7))) + (valueToSet << (index * 7));
+        this->reg0=this->reg0 - (this->reg0 & (255 << (index * 8))) + (valueToSet << (index * 8));
         this->registerWrite(HEX3_HEX0_BASE, this->reg0);
     // 4-5: we want to write to reg1
     } else if (index>=4 && index<=5) {
         // see above comments
-        this->reg1=this->reg1 - (this->reg1 & (127 << ((index-4) * 7))) + (valueToSet << ((index-4) * 7));
+        this->reg1=this->reg1 - (this->reg1 & (255 << ((index-4) * 8))) + (valueToSet << ((index-4) * 8));
         this->registerWrite(HEX5_HEX4_BASE, this->reg1);
     // error if not in range
     } else { cout << "Error: invalid HEX index. Valid ranges are 0-5.\n"; };
