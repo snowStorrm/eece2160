@@ -1,0 +1,17 @@
+main: DE1SoC.o DE1_HEX.o DE1_LED.o main.o
+	g++ DE1SoC.o DE1_HEX.o DE1_LED.o main.o -o main.exe
+
+DE1SoC.o: DE1SoC.cpp DE1SoC.h
+	g++ -g -Wall -c DE1SoC.cpp
+
+DE1_LED.o: DE1_LED.cpp DE1_LED.h
+	g++ -g -Wall -c DE1_LED.cpp
+
+DE1_HEX.o: DE1_HEX.cpp DE1_HEX.h
+	g++ -g -Wall -c DE1_HEX.cpp
+
+main.o:
+	g++ -g -Wall -c main.cpp
+
+clean:
+	rm main.exe main.o DE1SoC.o DE1_HEX.o DE1_LED.o
