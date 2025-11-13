@@ -50,7 +50,7 @@ void DE1_HEX::setAll(string value) {
     for (int i = 0; i < 6; i++) {
         // if within the string, set the corresponding display to the value
         if (i <= len) {
-            this->set(i, value[i]);
+            this->set(i, value[len-i-1]);
         // otherwise, set it to an empty value
         } else this->set(i, ' ');
     }
