@@ -2,6 +2,7 @@
 #include "DE1_LED.h"
 #include "DE1_HEX.h"
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 
 int main() { 
