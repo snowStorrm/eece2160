@@ -50,6 +50,7 @@ void DE1_HEX::setAll(string value) {
     for (int i = 0; i < 6; i++) {
         // if within the string, set the corresponding display to the value
         if (i <= len) {
+            // remember to reverse the string since hex0 is the rightmost value, not leftmost
             this->set(i, value[len-i-1]);
         // otherwise, set it to an empty value
         } else this->set(i, ' ');
