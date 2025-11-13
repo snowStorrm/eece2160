@@ -38,7 +38,10 @@ int main() {
         // set the previous input to the current one
         prevButton = currButton;
         // display value on hex displays
-        HEX->setAll(to_string(LED->reg));
+        // convert to string manually since to_string() isn't available
+        char valueAsString[50];
+        sprintf(valueAsString, "%d", LED->reg);
+        HEX->setAll((const string&)(valueAsString));
         // simple delay loop to slow the program down a little
         for (int i = 0; i < 2500; i++) {};
     }

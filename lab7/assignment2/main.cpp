@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include "DE1SoC.h"
 #include "DE1_HEX.h"
 #include <string>
@@ -13,7 +14,10 @@ int main() {
         // write i^3 to the hex display
         int value = i*i*i;
         cout << "Counter value: " << value << endl;
-        hex->setAll(to_string(value));
+        // convert to string manually since to_string() isn't available
+        char valueAsString[50];
+        sprintf(valueAsString, "%d", value);
+        hex->setAll((const string&)(valueAsString));
         // wait 1 second between iterations
         sleep(1);
     }

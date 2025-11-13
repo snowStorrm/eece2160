@@ -5,7 +5,9 @@ using namespace std;
 
 /** Clears the HEX displays before destroying the DE1_HEX object.
  */
-DE1_HEX::~DE1_HEX() { this->clearAll(); }
+DE1_HEX::~DE1_HEX() { 
+    this->clearAll(); 
+}
 
 /** Sets both HEX registers to zero, clearing them.
  */
