@@ -6,9 +6,8 @@
 
 // DE1_LED inherits DE1SOC superclass
 class DE1_LED: public DE1SOC {
-    private:
-        unsigned int reg;
     public:
+        unsigned int reg;
         // input reading
         bool readSwitch(int swIdx);
         int readAllSwitches();
