@@ -51,8 +51,8 @@ int main(int argc, char *argv[]){
 		// Wait a moment before continuing
 		sleep(0.25);
 		// Lower leg
-		leg->MoveJoint(SpiderLeg::Knee, 30.);
-		leg->MoveJoint(SpiderLeg::Ankle, 30.);
+		leg->MoveJoint(SpiderLeg::Knee, 0.);
+		leg->MoveJoint(SpiderLeg::Ankle, 0.);
 		// Wait until current move operation has finished
 		while (!leg->IsReady()) sleep(0.001);
 		// Wait a moment before continuing
